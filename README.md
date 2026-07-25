@@ -3,20 +3,20 @@
 A fullstack lead management application built for Digital Heroes Training Task.
 
 **Live URLs:**
-- Frontend: [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
-- Backend API: [https://your-backend.vercel.app](https://your-backend.vercel.app)
+
+- Url: [https://lead-desk-mini-oomr.vercel.app](https://lead-desk-mini-oomr.vercel.app)
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, TanStack Table |
-| Backend | Express 5, TypeScript, Node.js |
-| Database | MongoDB (Mongoose) |
-| Auth | JWT (jsonwebtoken), bcrypt |
-| Validation | Zod |
-| UI Components | shadcn/ui, Radix UI, Lucide Icons |
-| Deployment | Vercel (separate projects for frontend/backend) |
+| Layer         | Technology                                                  |
+| ------------- | ----------------------------------------------------------- |
+| Frontend      | React 19, TypeScript, Vite, Tailwind CSS v4, TanStack Table |
+| Backend       | Express 5, TypeScript, Node.js                              |
+| Database      | MongoDB (Mongoose)                                          |
+| Auth          | JWT (jsonwebtoken), bcrypt                                  |
+| Validation    | Zod                                                         |
+| UI Components | shadcn/ui, Radix UI, Lucide Icons                           |
+| Deployment    | Vercel (separate projects for frontend/backend)             |
 
 ## Data Models
 
@@ -39,9 +39,9 @@ Indexes: text index on `name` and `email` for search.
 
 ```ts
 {
-  email: string;         // required, unique, lowercase
-  password: string;      // required, bcrypt hashed (12 rounds)
-  role: string;          // default: "admin"
+  email: string; // required, unique, lowercase
+  password: string; // required, bcrypt hashed (12 rounds)
+  role: string; // default: "admin"
 }
 ```
 
@@ -55,10 +55,12 @@ Password hashing happens via a Mongoose pre-save hook. `comparePassword` instanc
 - The `GET /api/auth/me` endpoint validates the token and returns the current user.
 
 **Protected routes:**
+
 - `GET /api/leads` — list leads (supports `?search=` and `?status=` query params)
 - `PATCH /api/leads/:id/status` — update lead status
 
 **Public routes:**
+
 - `POST /api/leads` — submit a new lead (no auth required)
 - `POST /api/auth/register` — create account
 - `POST /api/auth/login` — login
@@ -66,15 +68,15 @@ Password hashing happens via a Mongoose pre-save hook. `comparePassword` instanc
 
 ## API Endpoints
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `POST` | `/api/auth/register` | No | Create new user |
-| `POST` | `/api/auth/login` | No | Login, returns JWT |
-| `GET` | `/api/auth/me` | Yes | Get current user |
-| `POST` | `/api/leads` | No | Submit a lead |
-| `GET` | `/api/leads` | Yes | List leads (search, filter by status) |
-| `PATCH` | `/api/leads/:id/status` | Yes | Update lead status |
-| `GET` | `/api/health` | No | Health check |
+| Method  | Endpoint                | Auth | Description                           |
+| ------- | ----------------------- | ---- | ------------------------------------- |
+| `POST`  | `/api/auth/register`    | No   | Create new user                       |
+| `POST`  | `/api/auth/login`       | No   | Login, returns JWT                    |
+| `GET`   | `/api/auth/me`          | Yes  | Get current user                      |
+| `POST`  | `/api/leads`            | No   | Submit a lead                         |
+| `GET`   | `/api/leads`            | Yes  | List leads (search, filter by status) |
+| `PATCH` | `/api/leads/:id/status` | Yes  | Update lead status                    |
+| `GET`   | `/api/health`           | No   | Health check                          |
 
 ## Validation
 
@@ -87,11 +89,11 @@ All inputs are validated with Zod schemas before hitting the database:
 
 ## Frontend Routes
 
-| Path | Component | Auth |
-|------|-----------|------|
-| `/` | LandingPage (public lead form) | No |
-| `/admin/login` | LoginPage | No (redirects if logged in) |
-| `/admin` | AdminDashboard (leads table, stats) | Yes |
+| Path           | Component                           | Auth                        |
+| -------------- | ----------------------------------- | --------------------------- |
+| `/`            | LandingPage (public lead form)      | No                          |
+| `/admin/login` | LoginPage                           | No (redirects if logged in) |
+| `/admin`       | AdminDashboard (leads table, stats) | Yes                         |
 
 ## Seed Script
 
