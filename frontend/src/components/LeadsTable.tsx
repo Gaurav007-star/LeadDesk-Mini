@@ -139,7 +139,7 @@ export function LeadsTable() {
   );
 
   return (
-    <div className="space-y-6 ">
+    <div className="h-full flex flex-col gap-4 min-h-0">
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-foreground">
@@ -151,7 +151,7 @@ export function LeadsTable() {
       </div>
 
       {/* Stat cards — shadcn default style */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3 shrink-0">
         {stats.map((s) => {
           const Icon = s.icon;
           const count = counts[s.key];
@@ -179,8 +179,8 @@ export function LeadsTable() {
       </div>
 
       {/* Table card */}
-      <Card className="shadow-sm">
-        <CardHeader className="border-b border-border/40 pb-4">
+      <Card className="shadow-sm flex-1 min-h-0 flex flex-col overflow-hidden">
+        <CardHeader className="border-b border-border/40 pb-4 shrink-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <CardTitle className="text-lg font-semibold">Recent Leads</CardTitle>
@@ -199,7 +199,7 @@ export function LeadsTable() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 flex-1 min-h-0 overflow-auto">
           {/* Table states */}
           {loading ? (
             <div className="flex flex-col items-center justify-center gap-3 py-24">
@@ -219,9 +219,9 @@ export function LeadsTable() {
               </p>
             </div>
           ) : (
-            <div className="overflow-hidden rounded-b-lg border-t border-border">
-              <Table>
-                <TableHeader className="bg-muted/80 border-b border-border">
+            <div className="flex-1 min-h-0 overflow-auto rounded-b-lg border-t border-border">
+              <Table className="h-full">
+                <TableHeader className="bg-muted/80 border-b border-border sticky top-0 z-10">
                   <TableRow className="hover:bg-transparent border-b border-border">
                     <TableHead className="text-xs font-bold uppercase tracking-wider text-foreground/80 h-11 px-4 border-r border-border/40 last:border-r-0">Name</TableHead>
                     <TableHead className="text-xs font-bold uppercase tracking-wider text-foreground/80 h-11 px-4 border-r border-border/40 last:border-r-0">Email</TableHead>

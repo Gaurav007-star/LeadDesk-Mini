@@ -63,7 +63,7 @@ export function AdminLayout() {
   };
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="h-svh overflow-hidden">
       {/* ─────────── Sidebar (floating, rounded) ──────────── */}
       <Sidebar className="m-3 h-[calc(100svh-1.5rem)] rounded-2xl shadow-lg">
         {/* Logo */}
@@ -135,7 +135,7 @@ export function AdminLayout() {
       </Sidebar>
 
       {/* ─────────── Main content ──────────────────────────── */}
-      <SidebarInset>
+      <SidebarInset className="flex flex-col overflow-hidden">
         {/* Top header */}
         <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/95 backdrop-blur-sm px-5">
           <SidebarTrigger />
