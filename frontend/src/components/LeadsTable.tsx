@@ -94,7 +94,8 @@ export function LeadsTable() {
       } catch (err) {
         if (
           mountedRef.current &&
-          !(err instanceof DOMException && err.name === "AbortError")
+          !(err instanceof DOMException && err.name === "AbortError") &&
+          !search
         ) {
           toast.error("Failed to load leads");
         }
