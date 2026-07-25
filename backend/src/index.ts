@@ -15,7 +15,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/leads", leadRoutes);
 
-app.get("/api/health", (_req, res) => {
+app.get("/", (_req, res) => {
   res.json({ status: "ok" });
 });
 
@@ -40,7 +40,27 @@ if (!process.env.VERCEL) {
   ensureDB()
     .then(() => {
       app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
+        const c = {
+          reset:  "\x1b[0m",
+          bold:   "\x1b[1m",
+          blue:   "\x1b[34m",
+          cyan:   "\x1b[36m",
+          green:  "\x1b[32m",
+          yellow: "\x1b[33m",
+          dim:    "\x1b[2m",
+        };
+        const line = `${c.dim}${"─".repeat(46)}${c.reset}`;
+        console.log(`
+${line}
+  ${c.bold}${c.blue}⚡ LeadDesk Mini — Backend${c.reset}
+${line}
+  ${c.green}✔ Status   ${c.reset}Running
+  ${c.cyan}🌐 Server   ${c.reset}http://localhost:${PORT}
+  ${c.cyan}📡 API      ${c.reset}http://localhost:${PORT}/api
+  ${c.yellow}🔗 Frontend ${c.reset}${frontendUrl}
+  ${c.dim}🛠  Env      ${process.env.NODE_ENV ?? "development"}${c.reset}
+${line}
+`);
       });
     })
     .catch((err) => {
